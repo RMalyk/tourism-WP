@@ -51,7 +51,9 @@ function tourism_setup()
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__('Primary', 'tourism'),
+			'menu__top' => esc_html__('menu top', 'tourism'),
+			'menu__bottom' => esc_html__('menu bottom', 'tourism'),
+			'menu__footer' => esc_html__('menu footer', 'tourism'),
 		)
 	);
 

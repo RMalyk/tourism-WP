@@ -51,11 +51,26 @@
 				</div>
 				<div class="menus">
 					<nav class="menu__top">
-						<ul class="menu__top-list">
-							<li class="menu__top-item">Про нас</li>
-							<li class="menu__top-item">Оплата</li>
-							<li class="menu__top-item">Контакти</li>
-						</ul>
+						<?php
+						wp_nav_menu([
+							'theme_location' => 'menu__top',
+							'menu' => '',
+							'container' => 'ul',
+							'container_class' => '',
+							'container_id' => '',
+							'menu_class' => 'menu__top-list',
+							'menu_id' => '',
+							'echo' => true,
+							'fallback_cb' => 'wp_page_menu',
+							'before' => '',
+							'after' => '',
+							'link_before' => '',
+							'link_after' => '',
+							'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth' => 0,
+							'walker' => '',
+						]);
+						?>
 						<ul class="menu__top-contact">
 							<li class="menu__contact-item">
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8" height="14" viewBox="0 0 8 14">
@@ -82,16 +97,26 @@
 						</ul>
 					</nav>
 					<div class="menu__bottom">
-						<ul class="menu__bottom-list">
-							<li class="menu__bottom-item">Головна</li>
-							<li class="menu__bottom-item">Автобусом в Європу</li>
-							<li class="menu__bottom-item">Країни</li>
-							<li class="menu__bottom-item">Круїзи</li>
-							<li class="menu__bottom-item">Тури Україною</li>
-							<li class="menu__bottom-item">Раннє бронювання</li>
-							<li class="menu__bottom-item">Акція одного дня</li>
-							<li class="menu__bottom-item">Акція на вікенд</li>
-						</ul>
+						<?php
+						wp_nav_menu([
+							'theme_location' => 'menu__bottom',
+							'menu' => '',
+							'container' => 'ul',
+							'container_class' => '',
+							'container_id' => '',
+							'menu_class' => 'menu__bottom-list',
+							'menu_id' => '',
+							'echo' => true,
+							'fallback_cb' => 'wp_page_menu',
+							'before' => '',
+							'after' => '',
+							'link_before' => '',
+							'link_after' => '',
+							'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth' => 0,
+							'walker' => '',
+						]);
+						?>
 					</div>
 				</div>
 			</div>

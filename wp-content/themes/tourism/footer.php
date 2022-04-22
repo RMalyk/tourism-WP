@@ -20,19 +20,29 @@
 	</picture>
 	<div class="container">
 		<div class="footer-flex-wrapper">
-			<div class="foter__wrapper">
-				<ul class="menu__foter-list">
-					<li class="menu__foter-item">Головна</li>
-					<li class="menu__foter-item">Автобусом в Європу</li>
-					<li class="menu__foter-item">Країни</li>
-					<li class="menu__foter-item">Круїзи</li>
-					<li class="menu__foter-item">Тури Україною</li>
-					<li class="menu__foter-item">Раннє бронювання</li>
-					<li class="menu__foter-item">Акція одного дня</li>
-					<li class="menu__foter-item">Акція на вікенд</li>
-				</ul>
+			<div class="footer__wrapper">
+				<?php
+				wp_nav_menu([
+					'theme_location' => 'menu__footer',
+					'menu' => '',
+					'container' => 'ul',
+					'container_class' => '',
+					'container_id' => '',
+					'menu_class' => 'menu__footer-list',
+					'menu_id' => '',
+					'echo' => true,
+					'fallback_cb' => 'wp_page_menu',
+					'before' => '',
+					'after' => '',
+					'link_before' => '',
+					'link_after' => '',
+					'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+					'depth' => 0,
+					'walker' => '',
+				]);
+				?>
 			</div>
-			<div class="foter__wrapper">
+			<div class="footer__wrapper">
 				<ul class="footer__contact">
 					<li class="footer__contact-item">Адреса:<br>
 						м. Львів, вул. Кот лярська, 2</li>
@@ -52,7 +62,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="foter__wrapper">
+			<div class="footer__wrapper">
 				<p class="footer__social-text">
 					<span>Ми в соціальних мережах</span>
 					Знаходьте нас у соціальних мережах

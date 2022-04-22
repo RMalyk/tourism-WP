@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The header for our theme
  *
@@ -10,50 +11,89 @@
  */
 
 ?>
-<!doctype html>
-<html <?php language_attributes(); ?>>
+<?php
+
+/**
+ * The header for our theme
+ *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package tourism
+ */
+
+?>
+<!DOCTYPE html>
+<html lang="ua">
+
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>tourism</title>
+
+	<!-- <link rel="stylesheet" href="css/style.min.css"> -->
+	<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
 	<?php wp_head(); ?>
+
 </head>
 
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'tourism' ); ?></a>
-
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$tourism_description = get_bloginfo( 'description', 'display' );
-			if ( $tourism_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $tourism_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'tourism' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+<body>
+	<header class="header">
+		<div class="container">
+			<div class="header-wrapper">
+				<div class="logo">
+					<picture>
+						<source srcset="images/logo-img.svg" type="image/webp"><img class="logo__img" src="images/logo-img.svg" alt="logo">
+					</picture>
+				</div>
+				<div class="menus">
+					<nav class="menu__top">
+						<ul class="menu__top-list">
+							<li class="menu__top-item">Про нас</li>
+							<li class="menu__top-item">Оплата</li>
+							<li class="menu__top-item">Контакти</li>
+						</ul>
+						<ul class="menu__top-contact">
+							<li class="menu__contact-item">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8" height="14" viewBox="0 0 8 14">
+									<image id="Icon" width="8" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAA3ElEQVQYlXWQPUqDURBFj3+1gtiYIiBCduEa3IGQ3soF6AoUwU6CRVoXoY2dlSAE0igaFC0MKZUcuR/v4QfqhYE3M3fuzH2oiS11oD6oj+qFup1eml31zt+4z2AIx6U1U0/VE3VaamchjEpyUNYl9tW5Ol4E1oEv4IofXAOfwFoI78ASsNMi5L0CvC4Dt0APOAK6wBzoAwvATfbt/eEgyA27IXTUp39sruaGZ+Cytb9iCEyrrZ760ZqOYpSJQjACBq3p86LcfHWNTfVFnagbtR6bFRPgEBrVt6YIfANxcPfmEFO0HAAAAABJRU5ErkJggg==" />
+								</svg>
+								Адреса:<br>
+								м. Львів, вул. Кот лярська, 2
+							</li>
+							<li class="menu__contact-item">
+								<a href="#">
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="13" viewBox="0 0 14 13">
+										<image id="Icon" width="14" height="13" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAABNUlEQVQokYWSuyvAURTHPxi8JkZlQ5gMHoPHbiHFbFUUA5uyWMhgMpJdyb/glVLIwKCUxySvgVLKR5fzq8vAt27de+73vL7nlKgAXcAM0A58ALvAGd+4BPaBW3KoveqLf+NJXVKrU6J0UsZtoDePBSTbKVAKdACd8bcDDAJPRLQCz2q/WqW2qy2RYVR9C87aV3vqSea4FcTZzDallqvX8X5XWxNpJiOdqzVqpTqirqiH6tUvBcaS48Qv4406qTYUQqhD6l3GmU7N32fCHACrwDJwAVwD48AmsJ7xapPjHvAahmNgDpiPdz3QHPeKzHGkKGUxSkjzHA5bU5x0HwjFCzwWm1MFbAD9ETFVcRQzbQP6fmxNmmcmQJJ8Xn34Z4te1b4iY446oAdoBEqix26gLDRYAPY/Ae8ujMGoURimAAAAAElFTkSuQmCC" />
+									</svg>
+									Skype:<br>
+									flora2115</a>
+							</li>
+							<li class="menu__contact-item">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+									<image id="Icon" width="15" height="15" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA00lEQVQokZWTMa7BQRjEByGicACFxDU0Ko1O/oWImjuolO8OiMp7IQrOwB24AqUeP/kSyVt/Gz6TzCa7ycy3M5vNAJKUl/QnKSspkRdAAVjwj6YZemjLjGfsgJxXfOYVHY/YMh5TCa+Sbp7UJt6mzn4krbziqfUWnFW+adu4DFJfgcRbmLEKnAIDK7HhFRtbj6mhQXiDHjAEyjGxsR95tgkwCvYHoBsTGwfAJWKSxsbaTmMsqS3p9KHrwrtCasAcuEWmroGS5wPUgSmwB47AL1AEdAfsKgNifbhplQAAAABJRU5ErkJggg==" />
+								</svg>
+								<a href="tel:+0322971645">(032) 297 16-45</a><br>
+								<a href="tel:+0677565876">(067-756-58-76</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="menu__bottom">
+						<ul class="menu__bottom-list">
+							<li class="menu__bottom-item">Головна</li>
+							<li class="menu__bottom-item">Автобусом в Європу</li>
+							<li class="menu__bottom-item">Країни</li>
+							<li class="menu__bottom-item">Круїзи</li>
+							<li class="menu__bottom-item">Тури Україною</li>
+							<li class="menu__bottom-item">Раннє бронювання</li>
+							<li class="menu__bottom-item">Акція одного дня</li>
+							<li class="menu__bottom-item">Акція на вікенд</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>

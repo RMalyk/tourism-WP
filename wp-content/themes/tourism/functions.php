@@ -140,16 +140,17 @@ function tourism_widgets_init()
 }
 add_action('widgets_init', 'tourism_widgets_init');
 
-add_action( 'init', 'register_post_types_tours' );
-function register_post_types_tours(){
-	register_post_type( 'tours', [
+add_action('init', 'register_post_types_tours');
+function register_post_types_tours()
+{
+	register_post_type('tours', [
 		'label'  => null,
 		'labels' => [
 			'name'               => 'Новий тур', // основное название для типа записи<#>
-			'singular_name'      => '____', // название для одной записи этого типа
+			'singular_name'      => 'тур', // название для одной записи этого типа<#>
 			'add_new'            => 'Додати тур', // для добавления новой записи<#>
 			'add_new_item'       => 'Добавление нового туру', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Редактирование ____', // для редактирования типа записи
+			'edit_item'          => 'Редактирование тура', // для редактирования типа записи<#>
 			'new_item'           => 'Новое ____', // текст новой записи
 			'view_item'          => 'Смотреть ____', // для просмотра записи этого типа.
 			'search_items'       => 'Искать ____', // для поиска по этим типам записи
@@ -174,13 +175,24 @@ function register_post_types_tours(){
 		//'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
 		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
 		'hierarchical'        => false,
-		'supports'            => [ 'title','thumbnail' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+		'supports'            => ['title', 'thumbnail'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
 		'taxonomies'          => [],
 		'has_archive'         => false,
 		'rewrite'             => true,
 		'query_var'           => true,
-	] );
+	]);
 }
+
+// if (function_exists('acf_add_options_page')) {
+
+// 	acf_add_options_page(array(
+// 		'page_title' 	=> 'Основные настройки',
+// 		'menu_title'	=> 'Настройки темы',
+// 		'menu_slug' 	=> 'theme-general-settings',
+// 		'capability'	=> 'edit_posts',
+// 		'redirect'		=> false
+// 	));
+// }
 /**
  * Enqueue scripts and styles.
  */

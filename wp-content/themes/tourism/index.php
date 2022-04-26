@@ -25,7 +25,10 @@ get_header();
 						<source srcset="images/slider/img-1.webp" type="image/webp"><img class="main_slider-img" src="images/slider/img-1.jpg" alt="slider-img">
 					</picture>
 					<div class="main_slider-description">
-						<h1 class="page__title">Нові горизонти Вашого відпочинку</h1>
+
+						<h1 class="page__title"><?php
+																		$post_id = 5; // пост с ID = 1
+																		the_field('slider_title', $post_id);  ?></h1>
 						<p class="page__text">Ми поставили перед собою завдання зробити якісний відпочинок доступним для всіх
 							українських сімей і розробили нову концепцію щасливого і безтурботного відпочинку з дітьми</p>
 					</div>
@@ -35,7 +38,7 @@ get_header();
 						<source srcset="images/slider/img-1.webp" type="image/webp"><img class="main_slider-img" src="images/slider/img-1.jpg" alt="slider-img">
 					</picture>
 					<div class="main_slider-description">
-						<h1 class="page__title">Нові горизонти Вашого відпочинку-2</h1>
+						<h1 class="page__title"><?php the_field('slider_title'); ?>-2</h1>
 						<p class="page__text">Ми поставили перед собою завдання зробити якісний відпочинок доступним для всіх
 							українських сімей і розробили нову концепцію щасливого і безтурботного відпочинку з дітьми</p>
 					</div>
@@ -45,7 +48,7 @@ get_header();
 						<source srcset="images/slider/slider-3.webp" type="image/webp"><img class="main_slider-img" src="images/slider/slider-3.png" alt="slider-img">
 					</picture>
 					<div class="main_slider-description">
-						<h1 class="page__title">Нові горизонти Вашого відпочинк-3</h1>
+						<h1 class="page__title"><?php the_field('slider_title'); ?>-3</h1>
 						<p class="page__text">Ми поставили перед собою завдання зробити якісний відпочинок доступним для всіх
 							українських сімей і розробили нову концепцію щасливого і безтурботного відпочинку з дітьми</p>
 					</div>
@@ -72,19 +75,44 @@ get_header();
 				foreach ($tours as $tour) { ?>
 					<li class="tours__item">
 						<div class="tours__item-header">
-							<div class="tours__item-stars"></div>
+							<div class="tours__item-stars">
+								<?php
+								$rating = get_field('rating', $tour);
+								for ($i = 0; $i < $rating; $i++) : ?>
+									<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="white">
+										<path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
+									</svg>
+								<?php endfor; ?>
+							</div>
 							<div class="tours__item-people"></div>
 							<div class="tours__item-likes"></div>
 						</div>
 
-						<?php echo get_the_post_thumbnail($tour->ID); ?>
+						<?php
+						$thumbnail = get_the_post_thumbnail($tour->ID);
+						if (empty($thumbnail)) {
+							echo "<div style='height: 371px;'></div>";
+						} else {
+							echo $thumbnail;
+						}
+
+						?>
+
 						<div class="tours__item-title">
 							<div class="tours__item-title-wrapper">
 								<h3><?php echo $tour->post_title ?></h3>
-								<p>Іспанія</p>
+								<p>
+									<?php
+									$country = the_field('country', $tour);
+									?>
+								</p>
 							</div>
 							<div class="tours__item-price">
-								<p>від 500 <span>$</span></p>
+								<p>від<span>
+										<?php
+										echo get_field('price', $tour);
+										?>
+									</span>$</p>
 							</div>
 						</div>
 						<div class="tours__item-footer">
@@ -97,112 +125,6 @@ get_header();
 					</li>
 				<?php } ?>
 			</ul>
-			<!-- <ul class="tours__list">
-					<li class="tours__item">
-						<div class="tours__item-header">
-							<div class="tours__item-stars"></div>
-							<div class="tours__item-people"></div>
-							<div class="tours__item-likes"></div>
-						</div>
-						<picture>
-							<source srcset="images/tours/img-1.webp" type="image/webp"><img class="img tours__item-img" src="images/tours/img-1.jpg" alt="tour-1">
-						</picture>
-						<div class="tours__item-title">
-							<div class="tours__item-title-wrapper">
-								<h3>Hotel lampa&PATAYA</h3>
-								<p>Іспанія</p>
-							</div>
-							<div class="tours__item-price">
-								<p>від 500 <span>$</span></p>
-							</div>
-						</div>
-						<div class="tours__item-footer">
-							<div class="tours__item-footer-wrapper">
-								<p>Особи - двоє дорослих</p>
-								<p>від 15.03.2018 - 15.04.2018</p>
-							</div>
-							<button class="tours__item-btn">забронювати</button>
-						</div>
-					</li> -->
-			<!-- <li class="tours__item">
-					<div class="tours__item-header">
-						<div class="tours__item-stars"></div>
-						<div class="tours__item-people"></div>
-						<div class="tours__item-likes"></div>
-					</div>
-					<picture>
-						<source srcset="images/tours/img-1.webp" type="image/webp"><img class="img tours__item-img" src="images/tours/img-1.jpg" alt="tour-1">
-					</picture>
-					<div class="tours__item-title">
-						<div class="tours__item-title-wrapper">
-							<h3>Hotel lampa&PATAYA</h3>
-							<p>Іспанія</p>
-						</div>
-						<div class="tours__item-price">
-							<p>від 500 <span>$</span></p>
-						</div>
-					</div>
-					<div class="tours__item-footer">
-						<div class="tours__item-footer-wrapper">
-							<p>Особи - двоє дорослих</p>
-							<p>від 15.03.2018 - 15.04.2018</p>
-						</div>
-						<button class="tours__item-btn">забронювати</button>
-					</div>
-				</li>
-				<li class="tours__item">
-					<div class="tours__item-header">
-						<div class="tours__item-stars"></div>
-						<div class="tours__item-people"></div>
-						<div class="tours__item-likes"></div>
-					</div>
-					<picture>
-						<source srcset="images/tours/img-1.webp" type="image/webp"><img class="img tours__item-img" src="images/tours/img-1.jpg" alt="tour-1">
-					</picture>
-					<div class="tours__item-title">
-						<div class="tours__item-title-wrapper">
-							<h3>Hotel lampa&PATAYA</h3>
-							<p>Іспанія</p>
-						</div>
-						<div class="tours__item-price">
-							<p>від 500 <span>$</span></p>
-						</div>
-					</div>
-					<div class="tours__item-footer">
-						<div class="tours__item-footer-wrapper">
-							<p>Особи - двоє дорослих</p>
-							<p>від 15.03.2018 - 15.04.2018</p>
-						</div>
-						<button class="tours__item-btn">забронювати</button>
-					</div>
-				</li>
-				<li class="tours__item">
-					<div class="tours__item-header">
-						<div class="tours__item-stars"></div>
-						<div class="tours__item-people"></div>
-						<div class="tours__item-likes"></div>
-					</div>
-					<picture>
-						<source srcset="images/tours/img-1.webp" type="image/webp"><img class="img tours__item-img" src="images/tours/img-1.jpg" alt="tour-1">
-					</picture>
-					<div class="tours__item-title">
-						<div class="tours__item-title-wrapper">
-							<h3>Hotel lampa&PATAYA</h3>
-							<p>Іспанія</p>
-						</div>
-						<div class="tours__item-price">
-							<p>від 500 <span>$</span></p>
-						</div>
-					</div>
-					<div class="tours__item-footer">
-						<div class="tours__item-footer-wrapper">
-							<p>Особи - двоє дорослих</p>
-							<p>від 15.03.2018 - 15.04.2018</p>
-						</div>
-						<button class="tours__item-btn">забронювати</button>
-					</div>
-				</li> -->
-			<!-- </ul> -->
 			<button class="show_more">Показати більше пропозицій</button>
 		</div>
 	</section>

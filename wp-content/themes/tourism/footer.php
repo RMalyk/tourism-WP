@@ -92,7 +92,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="copyright">© <span>2017</span> OTITOUR, ТУРОПЕРАТОР</div>
+		<div class="copyright">© <?php echo date('Y'); ?> OTITOUR, ТУРОПЕРАТОР</div>
 	</div>
 </footer>
 

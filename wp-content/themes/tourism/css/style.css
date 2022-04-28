@@ -499,6 +499,10 @@ body {
   padding: 0;
 }
 
+body:not(.home) .main {
+  padding: 150px;
+}
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -775,8 +779,9 @@ a {
   padding-bottom: 20px;
 }
 
-.tours__item img {
-  height: 263px !important;
+.main_slider-img {
+  width: 100%;
+  height: 100%;
 }
 
 .tours__item-header {

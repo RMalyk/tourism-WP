@@ -19,44 +19,21 @@ get_header();
 <main class="main">
 	<section class="main-slider">
 		<div class="swiper main_slider">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<picture>
-						<source srcset="images/slider/img-1.webp" type="image/webp"><img class="main_slider-img" src="images/slider/img-1.jpg" alt="slider-img">
-					</picture>
-					<div class="main_slider-description">
-
-						<h1 class="page__title">
-							<?php
-							// $post_id = get_post()->ID;
-							the_field('slider_title'); ?>
-						</h1>
-						<p class="page__text">Ми поставили перед собою завдання зробити якісний відпочинок доступним для всіх
-							українських сімей і розробили нову концепцію щасливого і безтурботного відпочинку з дітьми</p>
-					</div>
+			<?php
+			$rows = get_field('main_slider');
+			if ($rows) : ?>
+				<div class="swiper-wrapper">
+					<?php foreach ($rows as $row) : ?>
+						<div class="swiper-slide">
+							<img class="main_slider-img" src="<?php echo  $row['slider_img']; ?>" alt="slider-img">
+							<div class="main_slider-description">
+								<h1 class="page__title"><?php echo  $row['slider_title']; ?></h1>
+								<p class="page__text"><?php echo  $row['slider_text']; ?></p>
+							</div>
+						</div>;
+					<?php endforeach; ?>
 				</div>
-				<div class="swiper-slide">
-					<picture>
-						<source srcset="images/slider/img-1.webp" type="image/webp"><img class="main_slider-img" src="images/slider/img-1.jpg" alt="slider-img">
-					</picture>
-					<div class="main_slider-description">
-						<h1 class="page__title"><?php the_field('slider_title'); ?>-2</h1>
-						<p class="page__text">Ми поставили перед собою завдання зробити якісний відпочинок доступним для всіх
-							українських сімей і розробили нову концепцію щасливого і безтурботного відпочинку з дітьми</p>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<picture>
-						<source srcset="images/slider/slider-3.webp" type="image/webp"><img class="main_slider-img" src="images/slider/slider-3.png" alt="slider-img">
-					</picture>
-					<div class="main_slider-description">
-						<h1 class="page__title"><?php the_field('slider_title'); ?>-3</h1>
-						<p class="page__text">Ми поставили перед собою завдання зробити якісний відпочинок доступним для всіх
-							українських сімей і розробили нову концепцію щасливого і безтурботного відпочинку з дітьми</p>
-					</div>
-				</div>
-				<div class="swiper-slide">Slide 9</div>
-			</div>
+			<?php endif; ?>
 			<div class="swiper-pagination"></div>
 		</div>
 	</section>

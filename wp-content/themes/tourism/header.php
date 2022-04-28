@@ -77,22 +77,29 @@
 									<image id="Icon" width="8" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAA3ElEQVQYlXWQPUqDURBFj3+1gtiYIiBCduEa3IGQ3soF6AoUwU6CRVoXoY2dlSAE0igaFC0MKZUcuR/v4QfqhYE3M3fuzH2oiS11oD6oj+qFup1eml31zt+4z2AIx6U1U0/VE3VaamchjEpyUNYl9tW5Ol4E1oEv4IofXAOfwFoI78ASsNMi5L0CvC4Dt0APOAK6wBzoAwvATfbt/eEgyA27IXTUp39sruaGZ+Cytb9iCEyrrZ760ZqOYpSJQjACBq3p86LcfHWNTfVFnagbtR6bFRPgEBrVt6YIfANxcPfmEFO0HAAAAABJRU5ErkJggg==" />
 								</svg>
 								Адреса:<br>
-								м. Львів, вул. Кот лярська, 2
+								<?php echo get_field('Addresses', 'option'); ?>
 							</li>
 							<li class="menu__contact-item">
-								<a href="#">
+								<a href="skype:<?php echo get_field('skype', 'option'); ?>?chat">
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="13" viewBox="0 0 14 13">
 										<image id="Icon" width="14" height="13" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAABNUlEQVQokYWSuyvAURTHPxi8JkZlQ5gMHoPHbiHFbFUUA5uyWMhgMpJdyb/glVLIwKCUxySvgVLKR5fzq8vAt27de+73vL7nlKgAXcAM0A58ALvAGd+4BPaBW3KoveqLf+NJXVKrU6J0UsZtoDePBSTbKVAKdACd8bcDDAJPRLQCz2q/WqW2qy2RYVR9C87aV3vqSea4FcTZzDallqvX8X5XWxNpJiOdqzVqpTqirqiH6tUvBcaS48Qv4406qTYUQqhD6l3GmU7N32fCHACrwDJwAVwD48AmsJ7xapPjHvAahmNgDpiPdz3QHPeKzHGkKGUxSkjzHA5bU5x0HwjFCzwWm1MFbAD9ETFVcRQzbQP6fmxNmmcmQJJ8Xn34Z4te1b4iY446oAdoBEqix26gLDRYAPY/Ae8ujMGoURimAAAAAElFTkSuQmCC" />
 									</svg>
 									Skype:<br>
-									flora2115</a>
+									<?php echo get_field('skype', 'option'); ?></a>
 							</li>
 							<li class="menu__contact-item">
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
 									<image id="Icon" width="15" height="15" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA00lEQVQokZWTMa7BQRjEByGicACFxDU0Ko1O/oWImjuolO8OiMp7IQrOwB24AqUeP/kSyVt/Gz6TzCa7ycy3M5vNAJKUl/QnKSspkRdAAVjwj6YZemjLjGfsgJxXfOYVHY/YMh5TCa+Sbp7UJt6mzn4krbziqfUWnFW+adu4DFJfgcRbmLEKnAIDK7HhFRtbj6mhQXiDHjAEyjGxsR95tgkwCvYHoBsTGwfAJWKSxsbaTmMsqS3p9KHrwrtCasAcuEWmroGS5wPUgSmwB47AL1AEdAfsKgNifbhplQAAAABJRU5ErkJggg==" />
 								</svg>
-								<a href="tel:+0322971645">(032) 297 16-45</a><br>
-								<a href="tel:+0677565876">(067-756-58-76</a>
+								<?php
+								$phone_numbers = get_field('phone_number', 'option');
+								if ($phone_numbers) :
+									foreach ($phone_numbers as $tel) : ?>
+										<a href="tel:+38<?php echo phone_clean($tel['tel']); ?>"><?php echo phone($tel['tel']); ?></a><br>
+								<?php
+									endforeach;
+								endif;
+								?>
 							</li>
 						</ul>
 					</nav>

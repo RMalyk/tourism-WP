@@ -20,17 +20,17 @@ get_header();
 	<section class="main-slider">
 		<div class="swiper main_slider">
 			<?php
-			$rows = get_field('main_slider');
-			if ($rows) : ?>
+			$sliders = get_field('main_slider');
+			if ($sliders) : ?>
 				<div class="swiper-wrapper">
-					<?php foreach ($rows as $row) : ?>
+					<?php foreach ($sliders as $slider) : ?>
 						<div class="swiper-slide">
-							<img class="main_slider-img" src="<?php echo  $row['slider_img']; ?>" alt="slider-img">
+							<img class="main_slider-img" src="<?php echo  $slider['slider_img']; ?>" alt="slider-img">
 							<div class="main_slider-description">
-								<h1 class="page__title"><?php echo  $row['slider_title']; ?></h1>
-								<p class="page__text"><?php echo  $row['slider_text']; ?></p>
+								<h1 class="page__title"><?php echo  $slider['slider_title']; ?></h1>
+								<p class="page__text"><?php echo  $slider['slider_text']; ?></p>
 							</div>
-						</div>;
+						</div>
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>

@@ -100,18 +100,7 @@ get_header();
 								<p>Особи - двоє дорослих</p>
 								<p>від 15.03.2018 - 15.04.2018</p>
 							</div>
-
-							<a class="tours__item-btn" href="http://tourism.local/tours/test-tour/">забронювати</a>
-
-
-
-							<!-- <button class="tours__item-btn">забронювати</button> -->
-
-
-
-
-
-
+							<a class="tours__item-btn" href="<?php echo $tour->guid ?>">забронювати</a>
 						</div>
 					</li>
 				<?php endforeach; ?>

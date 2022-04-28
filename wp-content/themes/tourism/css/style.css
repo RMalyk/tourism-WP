@@ -499,7 +499,7 @@ body {
   padding: 0;
 }
 
-body:not(.home) .main {
+body:not(.home) main {
   padding: 150px;
 }
 

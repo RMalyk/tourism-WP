@@ -17,26 +17,30 @@ get_header();
 ?>
 
 <main class="main">
-	<section class="main-slider">
-		<div class="swiper main_slider">
-			<?php
-			$sliders = get_field('main_slider');
-			if ($sliders) : ?>
-				<div class="swiper-wrapper">
-					<?php foreach ($sliders as $slider) : ?>
-						<div class="swiper-slide">
-							<img class="main_slider-img" src="<?php echo  $slider['slider_img']; ?>" alt="slider-img">
-							<div class="main_slider-description">
-								<h1 class="page__title"><?php echo  $slider['slider_title']; ?></h1>
-								<p class="page__text"><?php echo  $slider['slider_text']; ?></p>
+	<?php
+	if (is_front_page()) : ?>
+		<section class="main-slider">
+			<div class="swiper main_slider">
+				<?php
+				$sliders = get_field('main_slider');
+				if ($sliders) : ?>
+					<div class="swiper-wrapper">
+						<?php foreach ($sliders as $slider) : ?>
+							<div class="swiper-slide">
+								<img class="main_slider-img" src="<?php echo  $slider['slider_img']; ?>" alt="slider-img">
+								<div class="main_slider-description">
+									<h1 class="page__title"><?php echo  $slider['slider_title']; ?></h1>
+									<p class="page__text"><?php echo  $slider['slider_text']; ?></p>
+								</div>
 							</div>
-						</div>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; ?>
-			<div class="swiper-pagination"></div>
-		</div>
-	</section>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+				<div class="swiper-pagination"></div>
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<section class="top__tours">
 		<div class="container">
 			<h2 class="section__title">Гарячі Тури</h2>
@@ -96,7 +100,18 @@ get_header();
 								<p>Особи - двоє дорослих</p>
 								<p>від 15.03.2018 - 15.04.2018</p>
 							</div>
-							<button class="tours__item-btn">забронювати</button>
+
+							<a class="tours__item-btn" href="http://tourism.local/tours/test-tour/">забронювати</a>
+
+
+
+							<!-- <button class="tours__item-btn">забронювати</button> -->
+
+
+
+
+
+
 						</div>
 					</li>
 				<?php endforeach; ?>
